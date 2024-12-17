@@ -1,0 +1,22 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: students-service
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    url: jdbc:postgresql://postgres:5432/students_db
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
