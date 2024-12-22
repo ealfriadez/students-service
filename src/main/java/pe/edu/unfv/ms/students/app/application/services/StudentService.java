@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pe.edu.unfv.ms.students.app.application.ports.input.StudentInputPort;
 import pe.edu.unfv.ms.students.app.application.ports.output.StudentPersistencePort;
+import pe.edu.unfv.ms.students.app.domain.exceptions.StudentEmailAlreadyExistsException;
 import pe.edu.unfv.ms.students.app.domain.exceptions.StudentNotFoundException;
 import pe.edu.unfv.ms.students.app.domain.models.Student;
 
@@ -22,17 +23,28 @@ public class StudentService implements StudentInputPort {
     }
 
     @Override
+    public List<Student> findByIds(Iterable<Long> ids) {
+        return persistencePort.findByIds(ids);
+    }
+
+    @Override
     public List<Student> findAll() {
         return persistencePort.findAll();
     }
 
     @Override
     public Student save(Student student) {
+        if(persistencePort.existByEmail(student.getEmail())){
+            throw new StudentEmailAlreadyExistsException(student.getEmail());
+        }
         return persistencePort.save(student);
     }
 
     @Override
     public Student update(Long id, Student student) {
+        if(persistencePort.existByEmail(student.getEmail())){
+            throw new StudentEmailAlreadyExistsException(student.getEmail());
+        }
         return persistencePort.findById(id)
                 .map(oldStudent -> {
                     oldStudent.setFirstname(student.getFirstname());

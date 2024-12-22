@@ -31,6 +31,11 @@ public class StudentRestAdapter {
         return restMapper.toStudentResponse(inputPort.findById(id));
     }
 
+    @GetMapping("/find-by-ids")
+    public List<StudentResponse> findByIds(@RequestParam List<Long> ids){
+        return restMapper.toStudentResponses(inputPort.findByIds(ids));
+    }
+
     @PostMapping
     public ResponseEntity<StudentResponse> save(
             @Valid @RequestBody StudentCreateRequest request

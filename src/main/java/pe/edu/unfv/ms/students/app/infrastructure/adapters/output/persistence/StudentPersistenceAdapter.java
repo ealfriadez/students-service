@@ -25,8 +25,18 @@ public class StudentPersistenceAdapter implements StudentPersistencePort {
     }
 
     @Override
+    public List<Student> findByIds(Iterable<Long> ids) {
+        return mapper.toStudents((List<StudentEntity>) jpaRepository.findAllById(ids));
+    }
+
+    @Override
     public List<Student> findAll() {
         return mapper.toStudents((List<StudentEntity>) jpaRepository.findAll());
+    }
+
+    @Override
+    public boolean existByEmail(String email) {
+        return jpaRepository.existsByEmailIgnoreCase(email);
     }
 
     @Override

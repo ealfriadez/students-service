@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pe.edu.unfv.ms.students.app.domain.exceptions.StudentEmailAlreadyExistsException;
 import pe.edu.unfv.ms.students.app.domain.exceptions.StudentNotFoundException;
 import pe.edu.unfv.ms.students.app.infrastructure.adapters.input.rest.models.enums.ErrorType;
 import pe.edu.unfv.ms.students.app.infrastructure.adapters.input.rest.models.response.ErrorResponse;
@@ -57,9 +58,26 @@ public class GlobalControllerAdvice {
                 .build();
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(StudentEmailAlreadyExistsException.class)
+    public ErrorResponse handleStudentEmailAlreadyExistsException(StudentEmailAlreadyExistsException e){
+
+        log.error(ERROR_LOG_MESSAGE, STUDENT_EMAIL_ALREADY_EXISTS.getCode(), STUDENT_EMAIL_ALREADY_EXISTS.getMessage());
+
+        return ErrorResponse.builder()
+                .code(STUDENT_EMAIL_ALREADY_EXISTS.getCode())
+                .type(FUNCTIONAL)
+                .message(STUDENT_EMAIL_ALREADY_EXISTS.getMessage())
+                .details(Collections.singletonList(e.getMessage()))
+                .timestamp(LocalDate.now().toString())
+                .build();
+    }
+
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ErrorResponse handleException(Exception e){
+
+        log.error(ERROR_LOG_MESSAGE, INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getMessage());
 
         return ErrorResponse.builder()
                 .code(INTERNAL_SERVER_ERROR.getCode())
