@@ -21,14 +21,14 @@ public class StudentRestAdapter {
     private final StudentInputPort inputPort;
     private final StudentRestMapper restMapper;
 
-    @GetMapping
-    public List<StudentResponse> findAll(){
-        return restMapper.toStudentResponses(inputPort.findAll());
-    }
-
     @GetMapping("/{id}")
     public StudentResponse findById(@PathVariable Long id){
         return restMapper.toStudentResponse(inputPort.findById(id));
+    }
+
+    @GetMapping
+    public List<StudentResponse> findAll(){
+        return restMapper.toStudentResponses(inputPort.findAll());
     }
 
     @GetMapping("/find-by-ids")

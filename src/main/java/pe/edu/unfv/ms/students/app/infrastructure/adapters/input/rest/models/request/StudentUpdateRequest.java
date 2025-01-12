@@ -22,6 +22,6 @@ public class StudentUpdateRequest {
     @Min(value = 1, message = "Field age must be greater than zero")
     private Integer age;
 
-    @NotBlank(message = "Field lastname cannot be null or blank")
+    @NotBlank(message = "Field address cannot be null or blank")
     private String address;
 }

@@ -27,6 +27,6 @@ public class StudentCreateRequest {
     @Email(message = "Field email invalid format")
     private String email;
 
-    @NotBlank(message = "Field lastname cannot be null or blank")
+    @NotBlank(message = "Field address cannot be null or blank")
     private String address;
 }

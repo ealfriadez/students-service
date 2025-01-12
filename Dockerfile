@@ -25,6 +25,6 @@ WORKDIR /app
 
 COPY --from=build-image-stage /app/$MS_NAME/target/students-service-0.0.1-SNAPSHOT.jar .
 
-EXPOSE 8080
+EXPOSE 8090
 
 CMD ["java", "-jar", "students-service-0.0.1-SNAPSHOT.jar"]
