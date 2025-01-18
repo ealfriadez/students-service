@@ -26,14 +26,14 @@ public class StudentRestAdapter {
         return restMapper.toStudentResponse(inputPort.findById(id));
     }
 
-    @GetMapping
-    public List<StudentResponse> findAll(){
-        return restMapper.toStudentResponses(inputPort.findAll());
-    }
-
     @GetMapping("/find-by-ids")
     public List<StudentResponse> findByIds(@RequestParam List<Long> ids){
         return restMapper.toStudentResponses(inputPort.findByIds(ids));
+    }
+
+    @GetMapping
+    public List<StudentResponse> findAll(){
+        return restMapper.toStudentResponses(inputPort.findAll());
     }
 
     @PostMapping
