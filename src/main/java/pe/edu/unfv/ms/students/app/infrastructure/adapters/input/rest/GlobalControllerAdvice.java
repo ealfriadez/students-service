@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pe.edu.unfv.ms.students.app.domain.exceptions.StudentEmailAlreadyExistsException;
 import pe.edu.unfv.ms.students.app.domain.exceptions.StudentNotFoundException;
-import pe.edu.unfv.ms.students.app.infrastructure.adapters.input.rest.models.enums.ErrorType;
 import pe.edu.unfv.ms.students.app.infrastructure.adapters.input.rest.models.response.ErrorResponse;
 
 import java.time.LocalDate;

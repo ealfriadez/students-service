@@ -6,7 +6,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:postgresql://postgres:5432/students_db
+    url: jdbc:postgresql://localhost:5432/students_db
     username: root
     password: root
     driver-class-name: org.postgresql.Driver
