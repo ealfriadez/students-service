@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: students-service:latest
+    image: ealfriadez/students-service:v5
     container_name: students-service
     depends_on:
       - postgres
@@ -50,7 +50,7 @@ services:
       - "3306:3306"
 
   courses-service:
-    image: ealfriadez/courses-service:v4
+    image: ealfriadez/courses-service:v5
     container_name: courses-service
     depends_on:
       - mysql
@@ -63,7 +63,7 @@ services:
       - "9090:9090"
 
   authorization-server:
-    image: ealfriadez/authorization-server:latest
+    image: ealfriadez/authorization-server:v5
     container_name: authorization-server
     environment:
       CLIENT_URL: http://gateway-server:9080
@@ -71,7 +71,7 @@ services:
       - "9070:9070"
 
   gateway-server:
-    image: ealfriadez/gateway-server:v4
+    image: ealfriadez/gateway-server:v5
     container_name: gateway-server
     depends_on:
       - students-service
