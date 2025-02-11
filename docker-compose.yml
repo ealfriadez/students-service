@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   postgres:
-    image: postgres
+    image: postgres:16-alpine
     container_name: postgres
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ealfriadez/students-service:v5
+    image: students-service:v5
     container_name: students-service
     depends_on:
       - postgres
